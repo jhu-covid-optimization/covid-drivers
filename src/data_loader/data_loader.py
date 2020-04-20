@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 import re
-from src.utils.dates import str2date
+from ..utils.dates import str2date, switch_date_format, ordinal2string
 import os
 
 data_dir = Path('../data')
 raw_dir = data_dir / 'raw'
+processed_dir = data_dir / 'processed'
 
 def _get_file(path, name):
     files = []
@@ -20,23 +21,28 @@ def _get_file(path, name):
 
     return(max(zip(files,dtimes), key=lambda x: str2date(x[1])))
 
-def load_deaths(join_county_codes = False, drop_geo=False):
+def load_deaths(join_county_codes = False, drop_geo=False, standardize_dates=True):
     deaths_path, date = _get_file(raw_dir, 'time_series_covid19_deaths_US')
-    death = pd.read_csv(raw_dir / deaths_path, parse_dates = True)
+    deaths = pd.read_csv(raw_dir / deaths_path, parse_dates = True)
 
     if drop_geo or join_county_codes:
         deaths = deaths.drop(labels=['UID', 'iso2', 'iso3', 'code3', 'Admin2', 'Province_State', 'Country_Region', 'Lat', 'Long_', "Combined_Key", "Population"], axis=1)
     if join_county_codes:
         county_codes = load_counties()[0][['FIPS', 'Rural-urban_Continuum Code_2013']]
         deaths = deaths.merge(county_codes, on="FIPS")
+    if standardize_dates:
+        deaths.rename(columns={c:switch_date_format(c,"%m/%d/%y") for c in deaths.columns}, inplace=True)
 
     return(deaths, date)
 
-def load_interventions():
+def load_interventions(standardize_dates = True):
     csv_path, date = _get_file(raw_dir, 'interventions')
-    csv = pd.read_csv(raw_dir / csv_path, parse_dates = True)
+    interventions = pd.read_csv(raw_dir / csv_path, parse_dates = True)
 
-    return(csv, date)
+    if standardize_dates:
+        interventions.iloc[:,3:] = interventions.iloc[:,3:].applymap(ordinal2string)
+
+    return(interventions, date)
 
 def load_google_mobility(remove_foreign=True):
     csv_path, date = _get_file(raw_dir, 'google_mobility_report')
@@ -56,32 +62,8 @@ def load_counties():
 
     return(csv, date)
 
-def load_google_mobility_time_series(
-    subset=['retail_and_recreation']
-):
-    """
-    subset : array-like
-        subset of regions to average together. Elements are of
-        ['retail_and_recreation','grocery_and_pharmacy', 'parks',
-        'transit_stations','workplaces','residential']
-    """
-    all_regions = ['retail_and_recreation','grocery_and_pharmacy', 'parks',
-        'transit_stations','workplaces','residential']
-    all_regions = [s + '_percent_change_from_baseline' for s in all_regions]
-    subset = [s + '_percent_change_from_baseline' for s in subset]
-    mobility,date = load_google_mobility()
-    # Drop rows with na in column(s) of interest
-    mobility.dropna(axis='rows', subset=subset, inplace=True)
-    # Average column(s) of interest and make a new column
-    mobility['mean_percent_change'] = mobility[subset].mean(axis='columns')
-    # Remove all old data columns
-    mobility.drop(axis='columns',labels=all_regions, inplace=True)
-    # Pivot to form time series
-    mobility = mobility.pivot_table(
-                    index=['state', 'county'],
-                    columns='date',
-                    values='mean_percent_change',
-                    aggfunc='first'
-                ).reset_index()
+def load_google_mobility_time_series():
+    csv_path, date = _get_file(processed_dir, 'mobility_time_series')
+    mobility_ts = pd.read_csv(processed_dir / csv_path, parse_dates = True)
 
-    return(mobility,date)
+    return(mobility_ts,date)
