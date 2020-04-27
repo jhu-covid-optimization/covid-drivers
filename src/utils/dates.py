@@ -38,3 +38,6 @@ def lag_date(date, lag=1, backwards=True, return_date=True):
         return(date)
     else:
         return(date2str(date))
+
+def get_format():
+    return dtime_format
