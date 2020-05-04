@@ -24,12 +24,11 @@ def _get_file(path, name):
 def load_deaths(join_county_codes = False, drop_geo=False, standardize_dates=True):
     deaths_path, date = _get_file(raw_dir, 'time_series_covid19_deaths_US')
     deaths = pd.read_csv(raw_dir / deaths_path, parse_dates = True)
-
     if drop_geo or join_county_codes:
         deaths = deaths.drop(labels=['UID', 'iso2', 'iso3', 'code3', 'Admin2', 'Province_State', 'Country_Region', 'Lat', 'Long_', "Combined_Key", "Population"], axis=1)
     if join_county_codes:
         county_codes = load_counties()[0][['FIPS', 'Rural-urban_Continuum Code_2013']]
-        deaths = deaths.merge(county_codes, on="FIPS")
+        deaths = pd.merge(deaths, county_codes, on="FIPS")
     if standardize_dates:
         deaths.rename(columns={c:switch_date_format(c,"%m/%d/%y") for c in deaths.columns}, inplace=True)
 
