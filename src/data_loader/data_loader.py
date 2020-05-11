@@ -66,3 +66,12 @@ def load_google_mobility_time_series():
     mobility_ts = pd.read_csv(processed_dir / csv_path, parse_dates = True)
 
     return(mobility_ts,date)
+
+def load_infection_time_series(standardize_dates=True):
+    csv_path, date = _get_file(raw_dir, 'infection_time_series')
+    infections_ts = pd.read_csv(raw_dir / csv_path, parse_dates = True)
+
+    if standardize_dates:
+        infections_ts.rename(columns={c:switch_date_format(c,"%m/%d/%y") for c in infections_ts.columns}, inplace=True)
+
+    return(infections_ts,date)
