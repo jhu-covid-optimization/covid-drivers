@@ -75,3 +75,16 @@ def load_infection_time_series(standardize_dates=True):
         infections_ts.rename(columns={c:switch_date_format(c,"%m/%d/%y") for c in infections_ts.columns}, inplace=True)
 
     return(infections_ts,date)
+
+def load_descartes_m50(standardize_dates=True):
+    csv_path, date = _get_file(raw_dir, 'descartes_m_50')
+    df = pd.read_csv(raw_dir / csv_path, parse_dates = True)
+
+    if standardize_dates:
+        df.rename(columns={c:switch_date_format(c,"%Y-%m-%d") for c in df.columns}, inplace=True)
+    
+    df.rename(columns={'fips':'FIPS'}, inplace=True)
+    df.dropna(axis=0, subset=['admin2'], inplace=True)
+    df['FIPS'] = df['FIPS'].astype(int)
+
+    return(df,date)
