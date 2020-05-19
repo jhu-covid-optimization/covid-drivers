@@ -88,3 +88,7 @@ def load_descartes_m50(standardize_dates=True):
     df['FIPS'] = df['FIPS'].astype(int)
 
     return(df,date)
+
+def load_od_baseline():
+    od_mobility = pd.read_csv('../data/processed/od_mobility_baseline.csv')
+    return od_mobility
