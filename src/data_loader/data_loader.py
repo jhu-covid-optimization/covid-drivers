@@ -110,3 +110,8 @@ def load_acute_care(beds=True):
     hospitals.reset_index(inplace=True)
 
     return hospitals
+
+def load_matthias_clusters():
+    df = pd.read_csv('../data/processed/clustering.csv')
+    df = df[['FIPS', 'cluster']]
+    return df
