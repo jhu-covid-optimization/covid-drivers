@@ -92,3 +92,21 @@ def load_descartes_m50(standardize_dates=True):
 def load_od_baseline():
     od_mobility = pd.read_csv('../data/processed/od_mobility_baseline.csv')
     return od_mobility
+
+def load_acute_care(beds=True):
+    hospitals = pd.read_csv('../data/processed/Hospitals.csv')
+    hospitals = hospitals[['TYPE', 'STATUS', 'COUNTYFIPS', 'BEDS']]
+    hospitals = hospitals[hospitals["STATUS"] == 'OPEN']
+    hospitals = hospitals[hospitals["TYPE"] == 'GENERAL ACUTE CARE']
+    if beds:
+        hospitals = hospitals[hospitals["BEDS"].astype(str).astype(int) > 0]
+    hospitals["FIPS"] = hospitals["COUNTYFIPS"]
+    hospitals = hospitals[hospitals["FIPS"] != 'NOT AVAILABLE']
+    hospitals = hospitals.drop(["COUNTYFIPS", "STATUS"], axis=1)
+    hospitals["FIPS"] = hospitals["FIPS"].astype(str).astype(int)
+    hospitals = hospitals.groupby("FIPS")['BEDS'].agg(
+        ['sum', 'count']).rename(columns={'sum':'Beds', 'count':'HospCt'}
+        )
+    hospitals.reset_index(inplace=True)
+
+    return hospitals
