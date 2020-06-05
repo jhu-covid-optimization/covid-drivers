@@ -112,6 +112,13 @@ def load_acute_care(beds=True):
     return hospitals
 
 def load_matthias_clusters():
+    csv_path, date = _get_file(raw_dir, 'descartes_m_50')
     df = pd.read_csv('../data/processed/clustering.csv')
     df = df[['FIPS', 'cluster']]
     return df
+
+def load_od_mobilities():
+    csv_path, date = _get_file(processed_dir, 'od_inter_mobilities')
+    mobility_ts = pd.read_csv(processed_dir / csv_path, parse_dates = True)
+
+    return mobility_ts, date
