@@ -2,4 +2,4 @@
 Covid data and analyses of it. The folders are as follows.
  - data : raw and processed data with dates of the most recent pull
  - notebooks : jupyter notebooks of analyses, numbered in chronological order
- - src : importable python files with various functions for standardized analyses
+ - src : importable python files with various functions for standardized analyses. See `src/data_loader/data_loader.py` for loading files in `data`.

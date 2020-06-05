@@ -88,3 +88,37 @@ def load_descartes_m50(standardize_dates=True):
     df['FIPS'] = df['FIPS'].astype(int)
 
     return(df,date)
+
+def load_od_baseline():
+    od_mobility = pd.read_csv('../data/processed/od_mobility_baseline.csv')
+    return od_mobility
+
+def load_acute_care(beds=True):
+    hospitals = pd.read_csv('../data/processed/Hospitals.csv')
+    hospitals = hospitals[['TYPE', 'STATUS', 'COUNTYFIPS', 'BEDS']]
+    hospitals = hospitals[hospitals["STATUS"] == 'OPEN']
+    hospitals = hospitals[hospitals["TYPE"] == 'GENERAL ACUTE CARE']
+    if beds:
+        hospitals = hospitals[hospitals["BEDS"].astype(str).astype(int) > 0]
+    hospitals["FIPS"] = hospitals["COUNTYFIPS"]
+    hospitals = hospitals[hospitals["FIPS"] != 'NOT AVAILABLE']
+    hospitals = hospitals.drop(["COUNTYFIPS", "STATUS"], axis=1)
+    hospitals["FIPS"] = hospitals["FIPS"].astype(str).astype(int)
+    hospitals = hospitals.groupby("FIPS")['BEDS'].agg(
+        ['sum', 'count']).rename(columns={'sum':'Beds', 'count':'HospCt'}
+        )
+    hospitals.reset_index(inplace=True)
+
+    return hospitals
+
+def load_matthias_clusters():
+    csv_path, date = _get_file(raw_dir, 'descartes_m_50')
+    df = pd.read_csv('../data/processed/clustering.csv')
+    df = df[['FIPS', 'cluster']]
+    return df
+
+def load_od_mobilities():
+    csv_path, date = _get_file(processed_dir, 'od_inter_mobilities')
+    mobility_ts = pd.read_csv(processed_dir / csv_path, parse_dates = True)
+
+    return mobility_ts, date
