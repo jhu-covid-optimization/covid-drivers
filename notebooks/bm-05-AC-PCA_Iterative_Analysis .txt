@@ -1,0 +1,282 @@
+AC-PCA Iterative Analysis 
+
+Variables: 
+        Baseline Mobility
+        Density per square mile of land area - Population
+        Rural-urban_Continuum Code_2013
+        Percent of adults with less than a high school diploma 2014-18
+        Percent of adults with a bachelor's degree or higher 2014-18
+        Unemployment_rate_2018', 'Med_HH_Income_Percent_of_State_Total_2018
+        Mar Temp AVG / F
+        Apr Temp AVG / F
+        May Temp AVG / F
+        Jun Temp AVG / F
+        Total_age65plus
+        Total households!!Average household size
+        SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool
+        SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten
+        SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)
+        SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)
+        SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school
+        HospCt
+
+Target Variable: Deaths per capita 
+
+Iterations 
+
+Round 1
+
+Confounders: Baseline Mobility (median of the max-distance)
+
+score: 0.23028342599436424
+
+Results:
+    
+    Density per square mile of land area - Population                                                    0.0516
+    Rural-urban_Continuum Code_2013                                                                      0.1827
+    Percent of adults with less than a high school diploma 2014-18                                       0.0934
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0159
+    Unemployment_rate_2018                                                                               0.1021
+    Med_HH_Income_Percent_of_State_Total_2018                                                            -0.0315
+    Mar Temp AVG / F                                                                                     -0.1939
+    *Apr Temp AVG / F                                                                                     0.4605
+    May Temp AVG / F                                                                                     -0.2646
+    Jun Temp AVG / F                                                                                     0.1080
+    Total_age65plus                                                                                      -0.0022
+    Total households!!Average household size                                                             -0.3441
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.1152
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0570
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.0538
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)         0.2771
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0165
+    HospCt                                                                                               0.2157
+
+
+Round 2
+
+Confounders: Baseline Mobility, Apr Temp AVG / F
+
+score: 0.2074554604737393
+
+Results: 
+
+    Density per square mile of land area - Population                                                    0.0541
+    Rural-urban_Continuum Code_2013                                                                      0.1923
+    Percent of adults with less than a high school diploma 2014-18                                       0.0834
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0148
+    Unemployment_rate_2018                                                                               0.0891
+    Med_HH_Income_Percent_of_State_Total_2018                                                            -0.0346
+    Mar Temp AVG / F                                                                                     -0.0028
+    May Temp AVG / F                                                                                     -0.1961
+    Jun Temp AVG / F                                                                                     0.2503
+    Total_age65plus                                                                                      0.0096
+    *Total households!!Average household size                                                             -0.3354
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.1051
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0521
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.0377
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)         0.2762
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0112
+    HospCt                                                                                               0.2111
+
+Round 3
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size
+
+score: 0.19160324989697697
+
+Results: 
+    Density per square mile of land area - Population                                                    0.0623
+    Rural-urban_Continuum Code_2013                                                                      0.1949
+    Percent of adults with less than a high school diploma 2014-18                                       -0.0499
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0446
+    Unemployment_rate_2018                                                                               -0.0390
+    Med_HH_Income_Percent_of_State_Total_2018                                                            -0.0892
+    Mar Temp AVG / F                                                                                     -0.0094
+    May Temp AVG / F                                                                                     -0.2031
+    *Jun Temp AVG / F                                                                                     0.2623
+    Total_age65plus                                                                                      -0.0376
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.1141
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0614
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.1399
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)         0.2268
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0608
+    HospCt                                                                                               0.2550
+
+
+Round 4
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F
+
+score: 0.1779348116281757
+
+Results: 
+
+    Density per square mile of land area - Population                                                    0.0748
+    Rural-urban_Continuum Code_2013                                                                      0.2142
+    Percent of adults with less than a high school diploma 2014-18                                       -0.0780
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0452
+    Unemployment_rate_2018                                                                               -0.0042
+    Med_HH_Income_Percent_of_State_Total_2018                                                            -0.0929
+    Mar Temp AVG / F                                                                                     0.0080
+    May Temp AVG / F                                                                                     -0.0022
+    Total_age65plus                                                                                      -0.0434
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.1104
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0560
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.1236
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)         0.2150
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0507
+    *HospCt                                                                                               0.2405
+
+Round 5
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt         
+
+score: 0.14924323734991052
+
+Results: 
+    Density per square mile of land area - Population                                                    0.1224
+    Rural-urban_Continuum Code_2013                                                                      0.0966
+    Percent of adults with less than a high school diploma 2014-18                                       -0.0858
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0088
+    Unemployment_rate_2018                                                                               -0.0425
+    Med_HH_Income_Percent_of_State_Total_2018                                                            -0.0559
+    Mar Temp AVG / F                                                                                     0.0207
+    May Temp AVG / F                                                                                     -0.0142
+    Total_age65plus                                                                                      -0.0971
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.1149
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0735
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.1187
+    *SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)         0.2363
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0577
+
+
+Round 5
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt, SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)          
+
+
+score: 0.13484406046265152
+
+Results: 
+    Density per square mile of land area - Population                                                    0.0546
+    Rural-urban_Continuum Code_2013                                                                      0.0518
+    Percent of adults with less than a high school diploma 2014-18                                       0.0734
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0101
+    Unemployment_rate_2018                                                                               0.0071
+    Med_HH_Income_Percent_of_State_Total_2018                                                            0.0434
+    Mar Temp AVG / F                                                                                     0.0338
+    May Temp AVG / F                                                                                     -0.0359
+    Total_age65plus                                                                                      -0.1037
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.0340
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0915
+    *SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)    -0.1149
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0465
+    
+    
+
+Round 6
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt, SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)
+
+score: 0.130432786435017
+
+Results: 
+    Density per square mile of land area - Population                                                    0.0629
+    Rural-urban_Continuum Code_2013                                                                      0.0477
+    Percent of adults with less than a high school diploma 2014-18                                       0.0281
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0094
+    Unemployment_rate_2018                                                                               0.0043
+    Med_HH_Income_Percent_of_State_Total_2018                                                            0.0244
+    Mar Temp AVG / F                                                                                     0.0239
+    May Temp AVG / F                                                                                     -0.0273
+    Total_age65plus                                                                                      0.0313
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.0314
+    *SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten                      -0.0668
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0201
+
+
+
+Round 7
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt, SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten
+
+score: 0.12846033967131543
+
+Results: 
+    Density per square mile of land area - Population                                                    0.0659
+    Rural-urban_Continuum Code_2013                                                                      0.0614
+    Percent of adults with less than a high school diploma 2014-18                                       0.0146
+    Percent of adults with a bachelor's degree or higher 2014-18                                         0.0346
+    Unemployment_rate_2018                                                                               0.0627
+    *Med_HH_Income_Percent_of_State_Total_2018                                                            0.0814
+    Mar Temp AVG / F                                                                                     0.0175
+    May Temp AVG / F                                                                                     -0.0295
+    Total_age65plus                                                                                      0.0312
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.0528
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0033
+    
+    
+    
+Round 8
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt, SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten, Med_HH_Income_Percent_of_State_Total_2018
+
+score: 0.1324830579494296
+
+Results:
+    *Density per square mile of land area - Population                                                    0.0826
+    Rural-urban_Continuum Code_2013                                                                      0.0378
+    Percent of adults with less than a high school diploma 2014-18                                       0.0440
+    Percent of adults with a bachelor's degree or higher 2014-18                                         0.0101
+    Unemployment_rate_2018                                                                               -0.0505
+    Mar Temp AVG / F                                                                                     0.0194
+    May Temp AVG / F                                                                                     -0.0195
+    Total_age65plus                                                                                      0.0577
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.0241
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        -0.0193
+
+
+
+
+Round 9
+
+Confounders: Baseline Mobility, Apr Temp AVG / F, Total households!!Average household size, Jun Temp AVG / F, HospCt, SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8), SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten, Med_HH_Income_Percent_of_State_Total_2018, Density per square mile of land area - Population
+
+score: 0.13324652863797648
+
+Results: 
+    Rural-urban_Continuum Code_2013                                                                      -0.0008
+    Percent of adults with less than a high school diploma 2014-18                                       0.0002
+    Percent of adults with a bachelor's degree or higher 2014-18                                         -0.0017
+    Unemployment_rate_2018                                                                               -0.0007
+    Mar Temp AVG / F                                                                                     0.0012
+    May Temp AVG / F                                                                                     -0.0009
+    Total_age65plus                                                                                      0.0043
+    *SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Nursery school preschool          0.0050
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!College or graduate school        0.0011
+
+
+Order of important variables
+    Baseline Mobility
+    Apr Temp AVG / F
+    Total households!!Average household size
+    Jun Temp AVG / F
+    HospCt
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten, Med_HH_Income_Percent_of_State_Total_2018
+    Density per square mile of land area - Population
+    
+
+
+Notes 
+Model only uses PCs that have positive eigenvalues and have higher regression score on deaths than mobility. Although in general, if regression  on deaths score is higher than that for mobility, eigenvalue will be positive. 
+
+Next steps: 
+might need to test different lambdas 
+
+
+
+
+
+
