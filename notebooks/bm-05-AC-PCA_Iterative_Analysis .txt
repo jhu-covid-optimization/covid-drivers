@@ -264,7 +264,8 @@ Order of important variables
     HospCt
     SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!High school (grades 9-12)
     SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Elementary school (grades 1-8)
-    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten, Med_HH_Income_Percent_of_State_Total_2018
+    SCHOOL ENROLLMENT!!Population 3 years and over enrolled in school!!Kindergarten
+    Med_HH_Income_Percent_of_State_Total_2018
     Density per square mile of land area - Population
     
 
