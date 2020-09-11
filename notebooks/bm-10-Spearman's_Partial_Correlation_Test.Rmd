@@ -1,0 +1,178 @@
+Import processed data
+```{r}
+data = read.csv("../data/processed/multi_var_unscaled.csv", header = TRUE)
+data = na.omit(data)
+head(data)
+```
+
+```{r}
+colnames(data)
+```
+```{r}
+hosp_cor = cor(data, data$HospCt)
+hosp_cor
+#str(hosp_cor)
+
+
+
+#cor(data)
+```
+
+
+
+library(ppcor)
+cor.test(x = data$HospCt, y = data$normalized_deaths, method = "spearman")
+
+
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+          z = data$X1.Month.Prior.Inter.Mobility)
+
+
+Partial Correlation 
+
+library(ppcor)
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "Total_age65plus")], method="spearman")
+
+
+
+library(ppcor)
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "NursingCt")], method = "spearman")
+
+
+
+
+library(ppcor)
+pcor.test(x = data$NursingCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method = "spearman")
+
+
+library(ppcor)
+pcor.test(x = data$NursingCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013")], method = "spearman")
+
+
+
+library(ppcor)
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013")], method = "spearman")
+
+
+
+library(ppcor)
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+
+
+
+library(ppcor)
+pcor.test(x = data$HospCt, y = data$normalized_deaths, 
+          z = data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "Total_age65plus")])
+
+
+
+```{r}
+pairwise_data = read.csv("../data/processed/local_pairwise_multi_var_unscaled.csv", header = TRUE)
+head(pairwise_data)
+```
+
+```{r}
+library(ppcor)
+cor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, method = "spearman")
+```
+
+
+Partial Correlation //0.06796591, 0.01061533
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "Total_age65plus")], method="spearman")
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$Total_age65plus, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
+```
+
+0.1367593, 0.0271566 
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "Total_age65plus")], method="spearman")
+```
+
+
+
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "NursingCt")], method="spearman")
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$NursingCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
+```
+
+0.1367593, 0.0271566 
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
+          z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "NursingCt")], method="spearman")
+```
+
+```{r}
+pairwise_PCA_withoutHosp = read.csv("../data/processed/pca_withoutHosp_local_pairwise_multi_var.csv", header = TRUE)
+head(pairwise_PCA)
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_PCA_withoutHosp$HospCt, y = pairwise_PCA_withoutHosp$normalized_deaths, 
+          z = pairwise_PCA_withoutHosp[, c('Principal_Component_1', 'Principal_Component_2', 'Principal_Component_3', 'Principal_Component_4', 'Principal_Component_5', 'Principal_Component_6', 'Principal_Component_7', 'Principal_Component_8', 'Principal_Component_9', 'Principal_Component_10', 'Principal_Component_11', 'Principal_Component_12', 'Principal_Component_13', 'Principal_Component_14', 'Principal_Component_15', 'Principal_Component_16', 'Principal_Component_17', 'Principal_Component_18', 'Principal_Component_19', 'Principal_Component_20', 'Principal_Component_21')], method="spearman")
+```
+```{r}
+library(ppcor)
+pcor.test(x = pairwise_PCA_withoutHosp$HospCt, y = pairwise_PCA_withoutHosp$normalized_deaths, 
+          z = pairwise_PCA_withoutHosp[, c('Principal_Component_1', 'Principal_Component_2', 'Principal_Component_3')], method="spearman")
+```
+
+
+
+```{r}
+NE_pairwise_data = read.csv("../data/processed/NE_local_pairwise_multi_var_unscaled.csv", header = TRUE)
+head(pairwise_data)
+```
+
+```{r}
+library(ppcor)
+cor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, method = "spearman")
+```
+
+
+#Partial Correlation 
+```{r}
+library(ppcor)
+pcor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, 
+          z = NE_pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, 
+          z = NE_pairwise_data[, c("Rural.urban_Continuum.Code_2013", "Total_age65plus")], method="spearman")
+```
+
+```{r}
+library(ppcor)
+pcor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, 
+          z = NE_pairwise_data[, c("Rural.urban_Continuum.Code_2013")], method="spearman")
+```
