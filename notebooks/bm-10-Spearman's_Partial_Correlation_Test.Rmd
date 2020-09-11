@@ -82,26 +82,28 @@ cor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, method =
 ```
 
 
-Partial Correlation //0.06796591, 0.01061533
+Partial Correlation //*0.06796591, 0.01061533
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
           z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
 ```
 
+//0.3102586
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
           z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "Total_age65plus")], method="spearman")
 ```
 
+// 1.660636e-05
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$Total_age65plus, y = pairwise_data$normalized_deaths, 
           z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
 ```
 
-0.1367593, 0.0271566 
+**0.1367593, 0.0271566 
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
@@ -109,20 +111,21 @@ pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths,
 ```
 
 
-
+// 0.3162988
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
           z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility", "NursingCt")], method="spearman")
 ```
 
+// 2.514871e-05
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$NursingCt, y = pairwise_data$normalized_deaths, 
           z = pairwise_data[, c("Rural.urban_Continuum.Code_2013", "X2wk.Prior.Intra.Mobility")], method="spearman")
 ```
 
-0.1367593, 0.0271566 
+**0.2031652, 0.1367593, 0.0271566 
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_data$HospCt, y = pairwise_data$normalized_deaths, 
@@ -134,6 +137,7 @@ pairwise_PCA_withoutHosp = read.csv("../data/processed/pca_withoutHosp_local_pai
 head(pairwise_PCA)
 ```
 
+// 0.8055295	
 ```{r}
 library(ppcor)
 pcor.test(x = pairwise_PCA_withoutHosp$HospCt, y = pairwise_PCA_withoutHosp$normalized_deaths, 
@@ -159,6 +163,7 @@ cor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, me
 
 
 #Partial Correlation 
+// 0.1448246 
 ```{r}
 library(ppcor)
 pcor.test(x = NE_pairwise_data$HospCt, y = NE_pairwise_data$normalized_deaths, 

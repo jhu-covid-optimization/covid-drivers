@@ -110,7 +110,7 @@ library(lmtest)
 ```{r}
 (p.val <- pchisq(teststat1, df = 0, lower.tail = FALSE))
 ```
-
+// 0.01317434
 ```{r}
 (p.val <- pchisq(teststat2, df = 1, lower.tail = FALSE))
 ```
