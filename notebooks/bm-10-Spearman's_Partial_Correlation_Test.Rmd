@@ -15,7 +15,7 @@ hosp_cor
 
 
 
-#cor(data)
+cor(data)
 ```
 
 

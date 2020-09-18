@@ -22,6 +22,11 @@ addHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Princ
 ```
 
 ```{r}
+summary(addHosp)$coefficients
+```
+
+
+```{r}
 library(lmtest)
 (logLikWithHosp <- logLik(withHosp))
 (logLikWithoutHosp <- logLik(withoutHosp))
