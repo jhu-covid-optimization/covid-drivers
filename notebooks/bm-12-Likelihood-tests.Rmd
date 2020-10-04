@@ -1,3 +1,7 @@
+Beatriz Medeiros
+Pipeline for Likelihood anlysis: 01 > 07 (if need to rerun safegraph) > 01 > 11 > 13 > 12
+Notebook for running log-likelihood tests
+
 ```{r}
 pairwise_PCA_withHosp = read.csv("../data/processed/pca_withHosp_local_pairwise_multi_var.csv", header = TRUE)
 head(pairwise_PCA_withHosp)
@@ -37,11 +41,11 @@ library(lmtest)
 (teststat1 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikWithHosp)))
 (teststat2 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikAddHosp)))
 ```
-
+// 1
 ```{r}
 (p.val <- pchisq(teststat1, df = 0, lower.tail = FALSE))
 ```
-
+// 0.01130937
 ```{r}
 (p.val <- pchisq(teststat2, df = 1, lower.tail = FALSE))
 ```
@@ -73,11 +77,11 @@ library(lmtest)
 (teststat1 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikWithHosp)))
 (teststat2 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikAddHosp)))
 ```
-
+// 1
 ```{r}
 (p.val <- pchisq(teststat1, df = 0, lower.tail = FALSE))
 ```
-
+// 3.018209e-05
 ```{r}
 (p.val <- pchisq(teststat2, df = 1, lower.tail = FALSE))
 ```
@@ -111,11 +115,11 @@ library(lmtest)
 (teststat1 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikWithHosp)))
 (teststat2 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikAddHosp)))
 ```
-
+// 1
 ```{r}
 (p.val <- pchisq(teststat1, df = 0, lower.tail = FALSE))
 ```
-// 0.01317434
+// 0.01317434, 0.0001070462
 ```{r}
 (p.val <- pchisq(teststat2, df = 1, lower.tail = FALSE))
 ```
