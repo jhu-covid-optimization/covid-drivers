@@ -67,6 +67,10 @@ addHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Princ
 ```
 
 ```{r}
+summary(addHosp)$coefficients
+```
+
+```{r}
 library(lmtest)
 (logLikWithHosp <- logLik(withHosp))
 (logLikWithoutHosp <- logLik(withoutHosp))
@@ -102,6 +106,10 @@ withoutHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+P
 
 ```{r}
 addHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5+Principal_Component_6+Principal_Component_7+Principal_Component_8+HospCt, data=pairwise_PCA_withoutHosp)
+```
+
+```{r}
+summary(addHosp)$coefficients
 ```
 
 ```{r}
