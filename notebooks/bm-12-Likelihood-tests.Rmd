@@ -7,14 +7,69 @@ pairwise_PCA_withHosp = read.csv("../data/processed/pca_withHosp_local_pairwise_
 head(pairwise_PCA_withHosp)
 ```
 
-```{r}
-withHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5+Principal_Component_6+Principal_Component_7+Principal_Component_8+Principal_Component_9+Principal_Component_10+Principal_Component_11+Principal_Component_12+Principal_Component_13+Principal_Component_14+Principal_Component_15+Principal_Component_16+Principal_Component_17+Principal_Component_18+Principal_Component_19+Principal_Component_20+Principal_Component_21, data=pairwise_PCA_withHosp)
-```
 
 ```{r}
 pairwise_PCA_withoutHosp = read.csv("../data/processed/pca_withoutHosp_local_pairwise_multi_var.csv", header = TRUE)
 head(pairwise_PCA)
 ```
+
+Keeping only 5 components (=81% var)
+
+
+```{r}
+withHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5, data=pairwise_PCA_withHosp)
+```
+
+```{r}
+withoutHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5, data=pairwise_PCA_withoutHosp)
+```
+
+
+```{r}
+addHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5+HospCt, data=pairwise_PCA_withoutHosp)
+```
+
+```{r}
+summary(withoutHosp)$coefficients
+summary(withoutHosp)$r.squared
+```
+
+
+```{r}
+summary(addHosp)$coefficients
+summary(addHosp)$r.squared
+```
+
+```{r}
+library(lmtest)
+(logLikWithHosp <- logLik(withHosp))
+(logLikWithoutHosp <- logLik(withoutHosp))
+(logLikAddHosp <- logLik(addHosp))
+
+```
+```{r}
+(teststat1 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikWithHosp)))
+(teststat2 <- -2 * (as.numeric(logLikWithoutHosp)-as.numeric(logLikAddHosp)))
+print('test stat:')
+print(teststat2)
+```
+
+```{r}
+(p.val <- pchisq(teststat1, df = 0, lower.tail = FALSE))
+```
+
+//0.003820024
+```{r}
+(p.val <- pchisq(teststat2, df = 1, lower.tail = FALSE))
+```
+
+
+keeping all components
+
+```{r}
+withHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5+Principal_Component_6+Principal_Component_7+Principal_Component_8+Principal_Component_9+Principal_Component_10+Principal_Component_11+Principal_Component_12+Principal_Component_13+Principal_Component_14+Principal_Component_15+Principal_Component_16+Principal_Component_17+Principal_Component_18+Principal_Component_19+Principal_Component_20+Principal_Component_21, data=pairwise_PCA_withHosp)
+```
+
 
 ```{r}
 withoutHosp<- lm(normalized_deaths~Principal_Component_1+Principal_Component_2+Principal_Component_3+Principal_Component_4+Principal_Component_5+Principal_Component_6+Principal_Component_7+Principal_Component_8+Principal_Component_9+Principal_Component_10+Principal_Component_11+Principal_Component_12+Principal_Component_13+Principal_Component_14+Principal_Component_15+Principal_Component_16+Principal_Component_17+Principal_Component_18+Principal_Component_19+Principal_Component_20+Principal_Component_21, data=pairwise_PCA_withoutHosp)
